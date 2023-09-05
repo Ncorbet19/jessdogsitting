@@ -72,7 +72,7 @@
 }
 
 .display-4.mb-3, .h4.mb-4 {
-  background-color: #c7c7c7; /* Black background */
+  background-color: #bfbfbf; /* Black background */
   color: rgb(0, 0, 0); /* White text */
   padding: 1rem; /* A bit of spacing */
   text-align: left;
@@ -81,7 +81,7 @@
 }
 
 .contact-info {
-  background-color: #c7c7c7; /* Black background */
+  background-color: #bfbfbf; /* Black background */
   color: rgb(0, 0, 0); /* White text */
   padding: 1rem; /* Some spacing */
   border-radius: 5px; /* Optional, for a bit of roundness */
@@ -118,7 +118,7 @@
 
 
 .price-info {
-  background-color: #f0f0f0; /* light gray color */
+  background-color: #bfbfbf; /* light gray color */
   padding: 10px 20px;
   border-radius: 10px; /* rounded corners */
   margin-left: 100px; /* space to move it closer to the carousel */
