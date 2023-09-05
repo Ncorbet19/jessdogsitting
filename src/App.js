@@ -124,6 +124,7 @@ function App() {
               <Circle center={center} options={circleOptions} />
             </GoogleMap>
           </LoadScript>
+          <small>address will be given when your sitting <br></br> has been confirmed</small>
         </div>
       </div>
 
