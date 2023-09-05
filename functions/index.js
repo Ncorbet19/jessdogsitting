@@ -3,7 +3,8 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 
 const sgMail = require("@sendgrid/mail");
-const k="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";
+const k=functions.config().sendgrid.key;
+sgMail.setApiKey(k);
 
 sgMail.setApiKey(k);
 
