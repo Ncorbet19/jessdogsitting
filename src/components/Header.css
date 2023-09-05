@@ -1,0 +1,10 @@
+/* components/Header.css */
+.header {
+    background-color: #000; /* Black color */
+    color: white;
+    padding: 20px;
+    text-align: left;
+    width: 100%; /* Ensure it covers the full width */
+    margin: 0; /* Remove any default margins */
+  }
+  

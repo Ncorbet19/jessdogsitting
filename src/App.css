@@ -1,0 +1,129 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+ */
+ .carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  overflow: hidden;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-slides img {
+  width: 100%;
+  flex-shrink: 0; /* Ensure the images don't shrink */
+}
+
+
+
+
+
+.App {
+  font-family: Arial, sans-serif; /* Sample font, you can replace with any of your choice */
+  background-color: #f5f5f5; /* Light gray background for the overall content */
+}
+
+.container {
+  background-color: white; /* Ensures the main content stands out against the light gray background */
+  padding: 2rem;
+  border-radius: 10px; /* Optional, but makes the container a bit more distinct */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+.display-4.mb-3, .h4.mb-4 {
+  background-color: #c7c7c7; /* Black background */
+  color: rgb(0, 0, 0); /* White text */
+  padding: 1rem; /* A bit of spacing */
+  text-align: left;
+  border-radius: 5px; /* Optional, for a bit of roundness */
+  margin-top: 0; /* Resetting margin so that it sticks to the top */
+}
+
+.contact-info {
+  background-color: #c7c7c7; /* Black background */
+  color: rgb(0, 0, 0); /* White text */
+  padding: 1rem; /* Some spacing */
+  border-radius: 5px; /* Optional, for a bit of roundness */
+  text-align: center;
+}
+
+.contact-info a {
+  color: #5a6bff; /* Orange color for links. Can be changed */
+  text-decoration: none;
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.contact-info a:hover {
+  color: #0014c5; /* Lighter orange on hover */
+}
+
+.carousel-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: auto; /* Adjust based on your needs */
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s; /* Smooth transition for slides */
+}
+
+.carousel-slides img {
+  width: 100%;
+  display: block;
+}
+
+
+
+.price-info {
+  background-color: #f0f0f0; /* light gray color */
+  padding: 10px 20px;
+  border-radius: 10px; /* rounded corners */
+  margin-left: 100px; /* space to move it closer to the carousel */
+}
+
+.google-maps {
+  margin-right: 50px; /* space to move it closer to the carousel */
+}
