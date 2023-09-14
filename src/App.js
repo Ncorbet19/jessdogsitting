@@ -6,6 +6,12 @@ import UpcomingSittings from "./components/UpcomingSittings";
 import firstSlide from "./pics/IMG_20210306_135141.jpg";
 import secondSlide from "./pics/20230319_113845.jpg";
 import thirdSlide from "./pics/IMG_20210522_140924.jpg";
+import fourthSlide from "./pics/IMG_0338.jpeg";
+import fifthSlide from "./pics/IMG_0820.jpeg";
+import sixthSlide from "./pics/IMG_7087.jpeg";
+import seventhSlide from "./pics/IMG_7263.jpeg";
+import eighthSlide from "./pics/IMG_8754.jpeg";
+import ninthSlide from "./pics/IMG_9464.jpeg";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
@@ -41,7 +47,7 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 3);
+      setCurrentSlide((prev) => (prev + 1) % 9);
     }, 5000); // changes every 5 seconds
 
     return () => clearInterval(timer); // Clear the interval when the component is unmounted
@@ -55,7 +61,7 @@ function App() {
           alt="Dog Paw Icon"
           style={{ marginRight: "10px", verticalAlign: "middle" }}
         />
-        FOR THE LOVE OF DOGS
+        Boarding For The Love Of Dogs
         <img
           src={dogPawIcon}
           alt="Dog Paw Icon"
@@ -64,25 +70,25 @@ function App() {
       </h1>
 
       <div className="mb-5">
-        <h3 className="h5 mb-3">Welcome to Jill's Dog Sitting</h3>
+        <h3 className="h5 mb-3">Welcome to Jessica's Dog Boarding Service</h3>
         <p>
-          No matter what type of care and support your furry friend needs, rest
+          No matter what type of care and support your furry friend requires, rest
           assured that For the Love of Dogs can provide what they need and more
           with experience, passion, and fun. Being flexible and accommodating to
           both you and the dogs in our care, we don't just meet the basics. We
           go the extra mile, catering to each individual owner's and dog's
-          needs.
+          desires.
         </p>
         <p>
           With over half an acre fully fenced for play, we offer multiple areas
           for shade, dog pools, natural dens, and paths carved into the
-          landscape. Dogs have the freedom to move in and out as they please.
-          Our priority is ensuring comfort - not just for your pet, but for you
+          landscape. Our house is their house.
+          Our priority is insuring comfort - not just for your pet, but for you
           as well. Located just minutes away from the Nanaimo River, we also
           offer outings. Trust in us; your best friends are in excellent hands.
           Driven by a passion for animals and a deep understanding of quality
           pet care, we proudly serve our growing client base, always looking to
-          expand and improve our service offerings.
+          expand and improve our service.
         </p>
       </div>
 
@@ -97,7 +103,7 @@ function App() {
         {/* Price on the left */}
         <div className="price-info">
           <h1>
-            $55/night <br /> per dog
+            $50/night <br /> per dog
           </h1>
         </div>
 
@@ -110,6 +116,12 @@ function App() {
             <img src={firstSlide} alt="Slide 1" />
             <img src={secondSlide} alt="Slide 2" />
             <img src={thirdSlide} alt="Slide 3" />
+            <img src={fourthSlide} alt="Slide 4" />
+            <img src={fifthSlide} alt="Slide 5" />
+            <img src={sixthSlide} alt="Slide 6" />
+            <img src={seventhSlide} alt="Slide 7" />
+            <img src={eighthSlide} alt="Slide 8" />
+            <img src={ninthSlide} alt="Slide 9" />
           </div>
         </div>
 
@@ -131,14 +143,14 @@ function App() {
       <div className="mb-5">
         <h3 className="h5 mb-3">Boarding/Hikes</h3>
         <p>
-          We understand life can be busy and complicated, which is why we offer
+          Life can be busy and complicated, which is why we offer
           a variety of services to make things easier on you and your furry
           family. From boarding with plenty of love and attention to fun hikes,
           we pride ourselves on our professional yet friendly approach. We do
           everything necessary to ensure your pets are safe, secure, and happy.
         </p>
         <p>
-          Run by my husband and I, our family business boasts over 20 years of
+          Our energetic family of 4 children, 2 dogs, chickens and cats with over 20 years of
           experience hosting "part-time family" dogs. We like to say that we are
           your dog's second best friends. With our full-time golden labs
           bubbling with love and play, the passion shines through in all we do.
