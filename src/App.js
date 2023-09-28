@@ -72,7 +72,7 @@ function App() {
       <div className="mb-5">
         <h3 className="h5 mb-3">Welcome to Jessica's Dog Boarding Service</h3>
         <p>
-          No matter what type of care and support your furry friend requires, rest
+          No matter what type of care and support your four legged friend requires, rest
           assured that For the Love of Dogs can provide what they need and more
           with experience, passion, and fun. Being flexible and accommodating to
           both you and the dogs in our care, we don't just meet the basics. We
@@ -81,11 +81,10 @@ function App() {
         </p>
         <p>
           With over half an acre fully fenced for play, we offer multiple areas
-          for shade, dog pools, natural dens, and paths carved into the
-          landscape. Our house is their house.
-          Our priority is insuring comfort - not just for your pet, but for you
-          as well. Located just minutes away from the Nanaimo River, we also
-          offer outings. Trust in us; your best friends are in excellent hands.
+          for shade, dog pools, natural dens. Our house is their house and our priority
+          is insuring comfort not just for your pet, but for you
+          as well.
+           Trust in us; your best friends are in excellent hands.
           Driven by a passion for animals and a deep understanding of quality
           pet care, we proudly serve our growing client base, always looking to
           expand and improve our service.
@@ -136,7 +135,7 @@ function App() {
               <Circle center={center} options={circleOptions} />
             </GoogleMap>
           </LoadScript>
-          <small>address will be given when your sitting <br></br> has been confirmed</small>
+          <small>address will be given when your sitting <br></br> payment has been confirmed but is Located <br></br> only minutes from Duke point ferry, Nanaimo <br></br> Airport and Nanaimo lakes and rivers.</small>
         </div>
       </div>
 
@@ -150,10 +149,9 @@ function App() {
           everything necessary to ensure your pets are safe, secure, and happy.
         </p>
         <p>
-          Our energetic family of 4 children, 2 dogs, chickens and cats with over 20 years of
+          Our energetic family of 4 children, 2 dogs, chickens and cats have over 20 years of
           experience hosting "part-time family" dogs. We like to say that we are
-          your dog's second best friends. With our full-time golden labs
-          bubbling with love and play, the passion shines through in all we do.
+          your dog's second best friends. The passion shines through in all we do.
         </p>
       </div>
 

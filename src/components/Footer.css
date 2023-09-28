@@ -3,3 +3,11 @@
     padding: 20px;
     text-align: center;
   }
+  .footer a {
+    color: #0099FF; /* Bright Blue */
+    text-decoration: none; /* Optional: Removes underline */
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Optional: Underline on hover */
+}

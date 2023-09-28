@@ -23,8 +23,8 @@ exports.sendEmailConfirmation = functions.firestore
         to: newValue.email,
         from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
         subject: "Your request has been sent!",
-        text: `Hello ${newValue.firstName}, 
-            your request has been received and will be under review.`,
+        text: `Hello ${newValue.firstName},\n` +
+        `your request has been received and will be under review.`,
       };
 
       // Notification email to Fortheloveofdogsboarding@gmail.com
@@ -32,9 +32,25 @@ exports.sendEmailConfirmation = functions.firestore
         to: "Fortheloveofdogsboarding@gmail.com",
         from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
         subject: "New Request Received",
-        text: `New request details:\n${JSON.stringify(newValue, null, 2)}`,
+        text: `
+        New Request Details:
+        --------------------
+        First Name: ${newValue.firstName || "Not provided"}
+        Last Name: ${newValue.lastName || "Not provided"}
+        Email: ${newValue.email || "Not provided"}
+        Number of Pets: ${newValue.numPets || "Not provided"}
+        Start: 
+        ${new Date(newValue.start.seconds * 1000).toLocaleString()}
+        End: 
+        ${new Date(newValue.end.seconds * 1000).toLocaleString()}
+        Details: ${newValue.details || "Not provided"}
+        Dog Age: ${newValue.dogAge || "Not specified"}
+        Fully Vaccinated: ${newValue.isVaccinated ? "Yes" : "No"}
+        Dog Name: ${newValue.dogName || "Not specified"}
+        Spayed/Neutered: ${newValue.isSpayedOrNeutered ? "Yes" : "No"}
+        Price: ${newValue.price || "Not specified"}
+        `,
       };
-
       // Log the email messages for review
       console.log("Sending email with following details:", msg);
       console.log("Sending admin notification details:", adminMsg);
@@ -42,11 +58,11 @@ exports.sendEmailConfirmation = functions.firestore
       // Sending both emails
       return Promise.all([sgMail.send(msg), sgMail.send(adminMsg)])
           .then((responses) => {
-            console.log("Emails sent successfully:", responses);
+            console.log("Email successfully:", responses);
             return null;
           })
           .catch((error) => {
-            console.error("Error sending emails:", error);
+            console.error("Error email:", error);
             return null;
           });
     });
@@ -55,16 +71,13 @@ exports.sendSittingsConfirmation = functions.firestore
     .document("sittings/{sittingId}")
     .onCreate((snap, context) => {
       const newValue = snap.data();
-      const docId = context.params.sittingId; // This gets the document ID
-
-      // Create payment link
-      const paymentLink = `http://nanaimoboardingfortheloveofdogs.ca/payment/${docId}`;
+      // const docId = context.params.sittingId; // This gets the document ID
 
       // Log the entire new value for review
-      console.log("New sitting document data:", newValue);
+      console.log("New sitting data:", newValue);
 
       if (!newValue.email) {
-        console.error("Email field is missing in the new sitting document!");
+        console.error("Email field missing in sitting document!");
         return null; // Exit the function
       }
 
@@ -74,15 +87,15 @@ exports.sendSittingsConfirmation = functions.firestore
         subject: "Your Request Has been accepted!",
         text:
         `Hello ${newValue.firstName},\n` +
-        `your sitting request has been accepted. 
-            Please follow the link below to ` +
-        `pay for your sitting: ${paymentLink}\n` +
-        `After your payment has been processed, 
-            you will receive an email with more ` +
-        `details including the business address. 
-            Thank you for choosing nanaimoboardingfortheloveofdogs.ca!`,
+        `Great news! Your sitting request has been accepted.\n` +
+        `To pay For your sitting e-transfer $${newValue.price} to ` +
+        `fortheloveofdogs@gmail.com \n` +
+        `Please use the same name used to book the sitting ` +
+        `in the e-transfer.\n` +
+        `After your payment has been processed, you will receive ` +
+        `an email with more details including the business address.\n` +
+        `Thank you for choosing nanaimoboardingfortheloveofdogs.ca!`,
       };
-
 
       // Log the email message for review
       console.log("Sending email for sitting with following details:", msg);
@@ -120,17 +133,19 @@ exports.sendRejectionEmail = functions.firestore
         to: oldValue.email,
         from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
         subject: "About Your Request...",
-        text: `Hello ${oldValue.firstName},\n` +
-            `We regret to inform you that your request 
-            has not been accepted at this time. ` +
-            `Thank you for showing interest. Feel 
-            free to try again in the future.`,
+        text:
+        `Hello ${oldValue.firstName},\n` +
+        `We regret to inform you that your request ` +
+        `has not been accepted at this time. ` +
+        `Thank you for showing interest. Feel ` +
+        `free to try again in the future.`,
       };
 
       // Log the email message for review
       console.log("rejection email with details:", msg);
 
-      return sgMail.send(msg)
+      return sgMail
+          .send(msg)
           .then((response) => {
             console.log("Rejection email sent successfully:", response);
             return null;
@@ -139,4 +154,70 @@ exports.sendRejectionEmail = functions.firestore
             console.error("Error sending rejection email:", error);
             return null;
           });
+    });
+
+exports.sendPaymentConfirmationEmail = functions.firestore
+    .document("sittings/{sittingId}")
+    .onUpdate((change, context) => {
+      const newValue = change.after.data();
+      // const previousValue = change.before.data();
+      // const docId = context.params.sittingId; // This gets the document ID
+
+      if (
+        newValue.paymentConfirmed === true
+        // && previousValue.paymentConfirmed === false
+      ) {
+      // Log the entire new value for review
+        console.log("Updated sitting document data:", newValue);
+
+        if (!newValue.email) {
+          console.error(
+              "Email field is missing in the updated sitting document!",
+          );
+          return null; // Exit the function
+        }
+
+        const msg = {
+          to: newValue.email,
+          from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
+          subject: "Payment Confirmation",
+          text:
+          `Hello ${newValue.firstName},\n` +
+          `Your payment has been confirmed!\n` +
+          `Your sitting details are as follows:\n` +
+
+          `Start: 
+          ${new Date(newValue.start.seconds * 1000).toLocaleString()}\n` +
+          `End: 
+          ${new Date(newValue.end.seconds * 1000).toLocaleString()}\n` +
+
+          `Business Address: 123 Nanaimo\n` +
+
+          `Thank you for choosing nanaimoboardingfortheloveofdogs.ca!`,
+        };
+
+        // Log the email message for review
+        console.log(
+            "Sending payment confirmation email with following details:",
+            msg,
+        );
+
+        return sgMail
+            .send(msg)
+            .then((response) => {
+              console.log(
+                  "Payment confirmation email sent successfully:",
+                  response,
+              );
+              return null;
+            })
+            .catch((error) => {
+              console.error("Error sending payment confirmation email:", error);
+              return null;
+            });
+      }
+
+      // If paymentConfirmed is not true or
+      // no changes in paymentConfirmed, exit the function
+      return null;
     });

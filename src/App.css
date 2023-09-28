@@ -50,7 +50,7 @@
 }
 
 .contact-info a {
-  color: #5a6bff; /* Orange color for links. Can be changed */
+  color: #0048ac; /* Orange color for links. Can be changed */
   text-decoration: none;
   transition: color 0.3s; /* Smooth color transition */
 }
@@ -111,3 +111,4 @@
     margin-right: 0; /* reset the margin for mobile */
   }
 }
+

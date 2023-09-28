@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../config/firebaseConfig"; // Adjust the path to point to your firebaseConfig file
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+  getDocs,
+  query,
+} from "firebase/firestore";
 
 function RequestForm() {
   const [start, setStart] = useState("");
@@ -39,21 +45,50 @@ function RequestForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const daysOffRef = collection(db, 'DaysOff');
+    const daysOffSnapshot = await getDocs(daysOffRef);
+    const daysOffDates = daysOffSnapshot.docs.map(doc => doc.data().daysOff);
+    
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    
+    const isConflict = daysOffDates.some(dayOff => {
+      const [dayOffStart, dayOffEnd] = dayOff.map(dateStr => new Date(dateStr));
+      return (startDate >= dayOffStart && startDate <= dayOffEnd) ||
+             (endDate >= dayOffStart && endDate <= dayOffEnd);
+    });
+
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+    
+    
+    if (isConflict) {
+      alert(
+        "We apologize for the inconvenience, but we are closed These days " +
+        "Please select a different date range or please try again another time, for help please contact us." 
+      );
+            return;
+    }
+
+
+    // If there are no day-off conflicts, proceed to add the request
     try {
       await addDoc(collection(db, "requests"), {
         start: Timestamp.fromDate(new Date(start)),
         end: Timestamp.fromDate(new Date(end)),
-        details: details,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        numPets: numPets,
-        price: price,
-        dogAge: dogAge,
-        isVaccinated: isVaccinated,
-        dogBreed: dogBreed,
-        dogName: dogName,
-        isSpayedOrNeutered: isSpayedOrNeutered,
+        details,
+        firstName,
+        lastName,
+        email,
+        numPets,
+        price,
+        dogAge,
+        isVaccinated,
+        dogBreed,
+        dogName,
+        isSpayedOrNeutered,
       });
       console.log("Request added!");
       setStart("");
@@ -68,6 +103,7 @@ function RequestForm() {
       console.error("Error adding document: ", error);
     }
   };
+  
   return (
     <div className="container mt-5">
       <h3 className="h5">Request Form</h3>

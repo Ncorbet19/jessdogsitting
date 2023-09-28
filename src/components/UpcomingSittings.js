@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../config/firebaseConfig';  // Adjust the path
-import { collection, getDocs, query } from 'firebase/firestore';
+import { collection, getDocs, query, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import './RequestsList.css';
 
 function RequestsList() {
   const [requests, setRequests] = useState([]);
@@ -20,12 +21,26 @@ function RequestsList() {
     fetchData();
   }, []);
 
+  const togglePaymentStatus = async (request) => {
+    const requestRef = doc(db, 'sittings', request.id);
+    await updateDoc(requestRef, {
+      paymentConfirmed: !request.paymentConfirmed
+    });
+    setRequests(prevRequests => prevRequests.map(r => r.id === request.id ? { ...r, paymentConfirmed: !r.paymentConfirmed } : r));
+  };
+
+  const handleDelete = async (id) => {
+    const requestRef = doc(db, 'sittings', id);
+    await deleteDoc(requestRef);
+    setRequests(prevRequests => prevRequests.filter(r => r.id !== id));
+  };
+
   return (
-    <div>
+    <div className="container">
       <h2>Accepted Requests</h2>
-      <ul>
+      <div className="request-list">
         {requests.map(request => (
-          <li key={request.id}>
+          <div key={request.id} className="request-card">
             <strong>Name:</strong> {request.firstName} {request.lastName} <br />
             <strong>Email:</strong> {request.email} <br />
             <strong>Number of Pets:</strong> {request.numPets} <br />
@@ -36,11 +51,20 @@ function RequestsList() {
             <strong>Dog Name:</strong> {request.dogName || "Not specified"} <br />
             <strong>Spayed/Neutered:</strong> {request.isSpayedOrNeutered ? "Yes" : "No"} <br />
             <strong>Price:</strong> {request.price} <br />
-          </li>
+            <strong>Payment Confirmed:</strong> {request.paymentConfirmed ? "Yes" : "No"} 
+            <div className="request-buttons">
+              <button className="button" onClick={() => togglePaymentStatus(request)}>
+                {request.paymentConfirmed ? "Unconfirm Payment" : "Confirm Payment"}
+              </button>
+              <button className="button delete-button" onClick={() => handleDelete(request.id)}>
+                Delete
+              </button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
-  );
+  );  
 }
 
 export default RequestsList;

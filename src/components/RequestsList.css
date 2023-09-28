@@ -1,0 +1,34 @@
+/* RequestsList.css */
+
+.container {
+    padding: 20px;
+  }
+  
+  .request-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 16px;
+    background-color: #fff;
+  }
+  
+  .request-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
