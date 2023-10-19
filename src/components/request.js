@@ -16,14 +16,13 @@ function RequestForm() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [numPets, setNumPets] = useState("1");
-  const [dogAge, setDogAge] = useState("");
+  const [dogAges, setDogAges] = useState([""]);
   const [isVaccinated, setIsVaccinated] = useState(false);
   const [dogBreed, setDogBreed] = useState("Labrador");
   const [dogName, setDogName] = useState("");
   const [isSpayedOrNeutered, setIsSpayedOrNeutered] = useState(false);
   const currentDate = new Date().toISOString().slice(0, 16);
   const [dogBreeds, setDogBreeds] = useState([]);
-
 
   const [price, setPrice] = useState(0);
 
@@ -45,33 +44,35 @@ function RequestForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const daysOffRef = collection(db, 'DaysOff');
+    const daysOffRef = collection(db, "DaysOff");
     const daysOffSnapshot = await getDocs(daysOffRef);
-    const daysOffDates = daysOffSnapshot.docs.map(doc => doc.data().daysOff);
-    
+    const daysOffDates = daysOffSnapshot.docs.map((doc) => doc.data().daysOff);
+
     const startDate = new Date(start);
     const endDate = new Date(end);
-    
-    const isConflict = daysOffDates.some(dayOff => {
-      const [dayOffStart, dayOffEnd] = dayOff.map(dateStr => new Date(dateStr));
-      return (startDate >= dayOffStart && startDate <= dayOffEnd) ||
-             (endDate >= dayOffStart && endDate <= dayOffEnd);
+
+    const isConflict = daysOffDates.some((dayOff) => {
+      const [dayOffStart, dayOffEnd] = dayOff.map(
+        (dateStr) => new Date(dateStr)
+      );
+      return (
+        (startDate >= dayOffStart && startDate <= dayOffEnd) ||
+        (endDate >= dayOffStart && endDate <= dayOffEnd)
+      );
     });
 
     function formatDate(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(dateString).toLocaleDateString(undefined, options);
     }
-    
-    
+
     if (isConflict) {
       alert(
         "We apologize for the inconvenience, but we are closed These days " +
-        "Please select a different date range or please try again another time, for help please contact us." 
+          "Please select a different date range or please try again another time, for help please contact us."
       );
-            return;
+      return;
     }
-
 
     // If there are no day-off conflicts, proceed to add the request
     try {
@@ -84,18 +85,24 @@ function RequestForm() {
         email,
         numPets,
         price,
-        dogAge,
+        dogAges,
         isVaccinated,
         dogBreed,
         dogName,
         isSpayedOrNeutered,
       });
       console.log("Request added!");
+
+      // Alert user after successfully adding the request
+      alert("Your request has been sent! You will be receiving an email shortly.");
+
       setStart("");
       setEnd("");
       setDetails("");
       setFirstName("");
+      setDogAges("");
       setLastName("");
+      setDogName("");
       setEmail("");
       setNumPets("1");
       setPrice(0); // Reset price as well
@@ -103,7 +110,18 @@ function RequestForm() {
       console.error("Error adding document: ", error);
     }
   };
-  
+
+  const handleDogAgeChange = (index, value) => {
+    const newDogAges = [...dogAges];
+    newDogAges[index] = value >= 0 ? value : "";
+    setDogAges(newDogAges);
+  };
+
+  useEffect(() => {
+    // Adjust the number of dog name and age inputs based on numPets
+    setDogAges(Array(parseInt(numPets)).fill(""));
+  }, [numPets]);
+
   return (
     <div className="container mt-5">
       <h3 className="h5">Request Form</h3>
@@ -192,7 +210,6 @@ function RequestForm() {
           />
         </div>
 
-
         <div className="mb-3">
           <input
             type="text"
@@ -203,21 +220,19 @@ function RequestForm() {
             required
           />
         </div>
-        <div className="mb-3">
-          <input
-            type="number"
-            value={dogAge}
-            onChange={(e) => {
-              if (e.target.value >= 0) {
-                setDogAge(e.target.value);
-              }
-            }}
-            placeholder="Dog Age(s)"
-            className="form-control"
-            min="0"
-            required
-          />
-        </div>
+        {Array.from({ length: parseInt(numPets) }).map((_, index) => (
+          <div key={index} className="mb-3">
+            <input
+              type="number"
+              value={dogAges[index] || ""}
+              onChange={(e) => handleDogAgeChange(index, e.target.value)}
+              placeholder={`Dog Age ${index + 1}`}
+              className="form-control"
+              min="0"
+              required
+            />
+          </div>
+        ))}
 
         <div className="mb-3">
           <textarea

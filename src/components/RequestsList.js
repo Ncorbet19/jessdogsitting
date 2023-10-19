@@ -69,7 +69,7 @@ function RequestsList() {
           <strong>Start:</strong> {new Date(request.start.seconds * 1000).toLocaleString()} <br />
           <strong>End:</strong> {new Date(request.end.seconds * 1000).toLocaleString()} <br />
           <strong>Details:</strong> {request.details || "No details provided"} <br />
-          <strong>Dog Age:</strong> {request.dogAge || "Not specified"} <br />
+          <strong>Dog Age:</strong> {request.dogAges ? request.dogAges.join(", ") : "Not specified"} <br />
           <strong>Fully Vaccinated:</strong> {request.isVaccinated ? "Yes" : "No"} <br />
           <strong>Dog Name:</strong> {request.dogName || "Not specified"} <br />
           <strong>Spayed/Neutered:</strong> {request.isSpayedOrNeutered ? "Yes" : "No"} <br />

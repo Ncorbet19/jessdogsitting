@@ -12,6 +12,7 @@ import sixthSlide from "./pics/IMG_7087.jpeg";
 import seventhSlide from "./pics/IMG_7263.jpeg";
 import eighthSlide from "./pics/IMG_8754.jpeg";
 import ninthSlide from "./pics/IMG_9464.jpeg";
+import tenthSlide from "./pics/IMG_1054.jpg";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
@@ -81,13 +82,12 @@ function App() {
         </p>
         <p>
           With over half an acre fully fenced for play, we offer multiple areas
-          for shade, dog pools, natural dens. Our house is their house and our priority
+          for shade, dog pools and natural dens. Our house is their house and our priority
           is insuring comfort not just for your pet, but for you
           as well.
            Trust in us; your best friends are in excellent hands.
           Driven by a passion for animals and a deep understanding of quality
-          pet care, we proudly serve our growing client base, always looking to
-          expand and improve our service.
+          pet care, we proudly serve our growing client base.
         </p>
       </div>
 
@@ -121,6 +121,7 @@ function App() {
             <img src={seventhSlide} alt="Slide 7" />
             <img src={eighthSlide} alt="Slide 8" />
             <img src={ninthSlide} alt="Slide 9" />
+            <img ssrc={tenthSlide} alt="Slide 10" />
           </div>
         </div>
 
@@ -143,14 +144,14 @@ function App() {
         <h3 className="h5 mb-3">Boarding/Hikes</h3>
         <p>
           Life can be busy and complicated, which is why we offer
-          a variety of services to make things easier on you and your furry
-          family. From boarding with plenty of love and attention to fun hikes,
+          a fully insured variety of services to make things easier on you and your furry
+          family. From boarding, with plenty of love and attention, to fun hikes,
           we pride ourselves on our professional yet friendly approach. We do
           everything necessary to ensure your pets are safe, secure, and happy.
         </p>
         <p>
-          Our energetic family of 4 children, 2 dogs, chickens and cats have over 20 years of
-          experience hosting "part-time family" dogs. We like to say that we are
+          Our large and energetic family have over 20 years of experience
+           hosting "part-time family" dogs. We like to say that we are
           your dog's second best friends. The passion shines through in all we do.
         </p>
       </div>

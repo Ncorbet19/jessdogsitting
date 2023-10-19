@@ -3,8 +3,11 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 
 const sgMail = require("@sendgrid/mail");
-const k = functions.config().sendgrid.key;
+const k = "SG.eMW-GvJaSxuYh9ipPM6KNg.w3u9" +
+"jffaocMOj5o5hyaLPXKla4cOlc9FBlnXPUQYUcY";
 sgMail.setApiKey(k);
+console.log(k);
+
 
 exports.sendEmailConfirmation = functions.firestore
     .document("requests/{requestId}")
@@ -21,7 +24,7 @@ exports.sendEmailConfirmation = functions.firestore
 
       const msg = {
         to: newValue.email,
-        from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
+        from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
         subject: "Your request has been sent!",
         text: `Hello ${newValue.firstName},\n` +
         `your request has been received and will be under review.`,
@@ -29,8 +32,8 @@ exports.sendEmailConfirmation = functions.firestore
 
       // Notification email to Fortheloveofdogsboarding@gmail.com
       const adminMsg = {
-        to: "Fortheloveofdogsboarding@gmail.com",
-        from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
+        to: "cannick9911@gmail.com",
+        from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
         subject: "New Request Received",
         text: `
         New Request Details:
@@ -83,7 +86,7 @@ exports.sendSittingsConfirmation = functions.firestore
 
       const msg = {
         to: newValue.email,
-        from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
+        from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
         subject: "Your Request Has been accepted!",
         text:
         `Hello ${newValue.firstName},\n` +
@@ -131,7 +134,7 @@ exports.sendRejectionEmail = functions.firestore
 
       const msg = {
         to: oldValue.email,
-        from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
+        from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
         subject: "About Your Request...",
         text:
         `Hello ${oldValue.firstName},\n` +
@@ -179,7 +182,7 @@ exports.sendPaymentConfirmationEmail = functions.firestore
 
         const msg = {
           to: newValue.email,
-          from: "no-reply@em2888.nanaimoboardingfortheloveofdogs.ca",
+          from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
           subject: "Payment Confirmation",
           text:
           `Hello ${newValue.firstName},\n` +
