@@ -13,6 +13,13 @@ import seventhSlide from "./pics/IMG_7263.jpeg";
 import eighthSlide from "./pics/IMG_8754.jpeg";
 import ninthSlide from "./pics/IMG_9464.jpeg";
 import tenthSlide from "./pics/IMG_1054.jpg";
+import eleventhSlide from "./pics/IMG_1026.jpg";
+import twelfthSlide from "./pics/IMG_1045.jpg";
+import thirteenthSlide from "./pics/IMG_1048.jpg";
+import fourteenthSlide from "./pics/IMG_1184.jpeg";
+import fifteenthSlide from "./pics/IMG_4432.jpeg";
+import sixteenthSlide from "./pics/IMG_6724.jpeg";
+
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
@@ -29,8 +36,8 @@ const mapContainerStyle = {
 };
 
 const center = {
-  lat: 49.1659,
-  lng: -123.9401, // Coordinates for Nanaimo
+  lat: 49.11268810825966,  
+  lng: -123.92850984632845, // Coordinates for Nanaimo
 };
 
 const circleOptions = {
@@ -40,16 +47,22 @@ const circleOptions = {
   fillColor: "#800080",
   fillOpacity: 0.35,
   center: center,
-  radius: 5000, // This will create a circle around 5km, adjust as necessary
+  radius: 2000, // This will create a circle around 5km, adjust as necessary
 };
 
 function App() {
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % 16);  // Cycle to next slide
+  };
+
+  
+  
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 9);
-    }, 5000); // changes every 5 seconds
+      setCurrentSlide((prev) => (prev + 1) % 16);
+    }, 3000); // changes every 5 seconds
 
     return () => clearInterval(timer); // Clear the interval when the component is unmounted
   }, []);
@@ -121,8 +134,17 @@ function App() {
             <img src={seventhSlide} alt="Slide 7" />
             <img src={eighthSlide} alt="Slide 8" />
             <img src={ninthSlide} alt="Slide 9" />
-            <img ssrc={tenthSlide} alt="Slide 10" />
+            <img src={tenthSlide} alt="Slide 10" />
+            <img src={eleventhSlide} alt="Slide 11" />
+            <img src={twelfthSlide} alt="Slide 12" />
+            <img src={thirteenthSlide} alt="Slide 13" />
+            <img src={fourteenthSlide} alt="Slide 14" />
+            <img src={fifteenthSlide} alt="Slide 15" />
+            <img src={sixteenthSlide} alt="Slide 16" />
+
           </div>
+          <button className="carousel-arrow right" onClick={nextSlide}>&#9654;</button>  {/* Right arrow button */}
+
         </div>
 
         {/* Google Maps on the right */}
@@ -131,12 +153,12 @@ function App() {
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
               center={center}
-              zoom={10}
+              zoom={9.5}
             >
               <Circle center={center} options={circleOptions} />
             </GoogleMap>
           </LoadScript>
-          <small>address will be given when your sitting <br></br> payment has been confirmed but is Located <br></br> only minutes from Duke point ferry, Nanaimo <br></br> Airport and Nanaimo lakes and rivers.</small>
+          <small>Address will be given when your sitting <br></br> payment has been confirmed but is Located <br></br> only minutes from Duke point ferry, Nanaimo <br></br> Airport and Nanaimo lakes and rivers.</small>
         </div>
       </div>
 

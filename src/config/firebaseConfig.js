@@ -1,6 +1,7 @@
 // Import the necessary services and SDKs
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -17,6 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+const auth = getAuth(app);  // <-- Initialize authentication
 
 // Export the necessary instances
-export { db, analytics };
+export { db, analytics, auth, onAuthStateChanged};

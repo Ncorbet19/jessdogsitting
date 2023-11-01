@@ -3,8 +3,7 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 
 const sgMail = require("@sendgrid/mail");
-const k = "SG.eMW-GvJaSxuYh9ipPM6KNg.w3u9" +
-"jffaocMOj5o5hyaLPXKla4cOlc9FBlnXPUQYUcY";
+const k = XXX
 sgMail.setApiKey(k);
 console.log(k);
 
@@ -32,7 +31,7 @@ exports.sendEmailConfirmation = functions.firestore
 
       // Notification email to Fortheloveofdogsboarding@gmail.com
       const adminMsg = {
-        to: "cannick9911@gmail.com",
+        to: "Fortheloveofdogsboarding@gmail.com",
         from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
         subject: "New Request Received",
         text: `
@@ -194,7 +193,7 @@ exports.sendPaymentConfirmationEmail = functions.firestore
           `End: 
           ${new Date(newValue.end.seconds * 1000).toLocaleString()}\n` +
 
-          `Business Address: 123 Nanaimo\n` +
+          `Business Address: 1823 Richardson Rd, Nanaimo, BC\n` +
 
           `Thank you for choosing nanaimoboardingfortheloveofdogs.ca!`,
         };

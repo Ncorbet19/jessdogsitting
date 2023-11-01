@@ -94,7 +94,9 @@ function RequestForm() {
       console.log("Request added!");
 
       // Alert user after successfully adding the request
-      alert("Your request has been sent! You will be receiving an email shortly.");
+      alert(
+        "Your request has been sent! You will be receiving an email shortly."
+      );
 
       setStart("");
       setEnd("");
@@ -176,7 +178,9 @@ function RequestForm() {
           </select>
         </div>
         <div className="mb-3">
+          <label htmlFor="start-time">Start Time</label>
           <input
+            id="start-time"
             type="datetime-local"
             value={start}
             onChange={(e) => {
@@ -186,14 +190,15 @@ function RequestForm() {
               }
               setStart(e.target.value);
             }}
-            placeholder="Start Time"
             className="form-control"
             min={currentDate}
             required
           />
         </div>
         <div className="mb-3">
+          <label htmlFor="end-time">End Time</label>
           <input
+            id="end-time"
             type="datetime-local"
             value={end}
             onChange={(e) => {
@@ -203,7 +208,6 @@ function RequestForm() {
               }
               setEnd(e.target.value);
             }}
-            placeholder="End Time"
             className="form-control"
             min={start || currentDate}
             required
