@@ -19,9 +19,9 @@ import thirteenthSlide from "./pics/IMG_1048.jpg";
 import fourteenthSlide from "./pics/IMG_1184.jpeg";
 import fifteenthSlide from "./pics/IMG_4432.jpeg";
 import sixteenthSlide from "./pics/IMG_6724.jpeg";
-import seventhSlide from "./pics/IMG_5189.jpeg";
-import eighthSlide from "./pics/IMG_6459.jpeg";
-import ninthSlide from "./pics/IMG_8864.jpeg";
+import seventeenthSlide from "./pics/IMG_5189.jpeg";
+import eighteenthSlide from "./pics/IMG_6459.jpeg";
+import nineteenthSlide from "./pics/IMG_8864.jpeg";
 
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -144,9 +144,9 @@ function App() {
             <img src={fourteenthSlide} alt="Slide 14" />
             <img src={fifteenthSlide} alt="Slide 15" />
             <img src={sixteenthSlide} alt="Slide 16" />
-            <img src={secondSlide} alt="Slide 17" />
-            <img src={eighthSlide} alt="Slide 18" />
-            <img src={ninthSlide} alt="Slide 19" />
+            <img src={seventeenthSlide} alt="Slide 17" />
+            <img src={eighteenthSlide} alt="Slide 18" />
+            <img src={nineteenthSlide} alt="Slide 19" />
           </div>
           <button className="carousel-arrow right" onClick={nextSlide}>&#9654;</button>  {/* Right arrow button */}
 
