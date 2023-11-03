@@ -86,18 +86,27 @@ exports.sendSittingsConfirmation = functions.firestore
       const msg = {
         to: newValue.email,
         from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
-        subject: "Your Request Has been accepted!",
+        subject: "Your Request Has Been Accepted!",
         text:
         `Hello ${newValue.firstName},\n` +
         `Great news! Your sitting request has been accepted.\n` +
-        `To pay For your sitting e-transfer $${newValue.price} to ` +
-        `fortheloveofdogs@gmail.com \n` +
+        `To pay for your sitting, e-transfer $${newValue.price} to ` +
+        `fortheloveofdogs@gmail.com.\n` +
         `Please use the same name used to book the sitting ` +
         `in the e-transfer.\n` +
-        `After your payment has been processed, you will receive ` +
-        `an email with more details including the business address.\n` +
-        `Thank you for choosing nanaimoboardingfortheloveofdogs.ca!`,
+
+        `If you would prefer to pay in cash upon pet drop-off, ` +
+        `please reach out to our email and we can set that up for you: ` +
+        `Fortheloveofdogsboarding@gmail.com.\n` +
+
+        `After your payment has been processed or discussed with us ` +
+        `about a cash payment, you will receive an email with more ` +
+        `details including the business address.\n` +
+        `Thank you for choosing nanaimoboardingfortheloveofdogs.ca! ` +
+        `If you have any questions, please contact us at ` +
+        `Fortheloveofdogsboarding@gmail.com.`,
       };
+
 
       // Log the email message for review
       console.log("Sending email for sitting with following details:", msg);
@@ -140,7 +149,9 @@ exports.sendRejectionEmail = functions.firestore
         `We regret to inform you that your request ` +
         `has not been accepted at this time. ` +
         `Thank you for showing interest. Feel ` +
-        `free to try again in the future.`,
+        `free to try again in the future.` +
+        `If you have any questions, please contact us at ` +
+        `Fortheloveofdogsboarding@gmail.com.`,
       };
 
       // Log the email message for review
@@ -182,21 +193,29 @@ exports.sendPaymentConfirmationEmail = functions.firestore
         const msg = {
           to: newValue.email,
           from: "no-reply@em2440.nanaimoboardingfortheloveofdogs.ca",
-          subject: "Payment Confirmation",
+          subject: "Pet Sitting Confirmation",
           text:
           `Hello ${newValue.firstName},\n` +
-          `Your payment has been confirmed!\n` +
+          `Your sitting request has been confirmed and we are ` +
+          `looking forward to taking care of your pet.\n` +
           `Your sitting details are as follows:\n` +
 
-          `Start: 
-          ${new Date(newValue.start.seconds * 1000).toLocaleString()}\n` +
-          `End: 
-          ${new Date(newValue.end.seconds * 1000).toLocaleString()}\n` +
+        `Start: ${new Date(newValue.start.seconds * 1000).toLocaleString()}\n` +
+        `End: ${new Date(newValue.end.seconds * 1000).toLocaleString()}\n` +
+
+          `Payment Information:\n` +
+          `If you have paid through e-transfer, your payment has been ` +
+          `received successfully. No further action is required.\n` +
+          `If you have arranged to pay in cash, please ensure to bring ` +
+          `$${newValue.price} upon pet drop-off.` +
 
           `Business Address: 1823 Richardson Rd, Nanaimo, BC\n` +
 
-          `Thank you for choosing nanaimoboardingfortheloveofdogs.ca!`,
+          `Thank you for choosing nanaimoboardingfortheloveofdogs.ca!`+
+          `If you have any questions, please contact us at ` +
+          `Fortheloveofdogsboarding@gmail.com.`,
         };
+
 
         // Log the email message for review
         console.log(

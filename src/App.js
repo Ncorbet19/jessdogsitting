@@ -19,6 +19,9 @@ import thirteenthSlide from "./pics/IMG_1048.jpg";
 import fourteenthSlide from "./pics/IMG_1184.jpeg";
 import fifteenthSlide from "./pics/IMG_4432.jpeg";
 import sixteenthSlide from "./pics/IMG_6724.jpeg";
+import seventhSlide from "./pics/IMG_5189.jpeg";
+import eighthSlide from "./pics/IMG_6459.jpeg";
+import ninthSlide from "./pics/IMG_8864.jpeg";
 
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -54,14 +57,14 @@ function App() {
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % 16);  // Cycle to next slide
+    setCurrentSlide((prev) => (prev + 1) % 19);  // Cycle to next slide
   };
 
   
   
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 16);
+      setCurrentSlide((prev) => (prev + 1) % 19);
     }, 3000); // changes every 5 seconds
 
     return () => clearInterval(timer); // Clear the interval when the component is unmounted
@@ -141,7 +144,9 @@ function App() {
             <img src={fourteenthSlide} alt="Slide 14" />
             <img src={fifteenthSlide} alt="Slide 15" />
             <img src={sixteenthSlide} alt="Slide 16" />
-
+            <img src={secondSlide} alt="Slide 17" />
+            <img src={eighthSlide} alt="Slide 18" />
+            <img src={ninthSlide} alt="Slide 19" />
           </div>
           <button className="carousel-arrow right" onClick={nextSlide}>&#9654;</button>  {/* Right arrow button */}
 
