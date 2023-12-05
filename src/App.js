@@ -118,7 +118,7 @@ function App() {
         {/* Price on the left */}
         <div className="price-info">
           <h1>
-            $50/night <br /> per dog
+            $40/night <br /> per dog
           </h1>
         </div>
 
@@ -171,7 +171,7 @@ function App() {
         <h3 className="h5 mb-3">Boarding/Hikes</h3>
         <p>
           Life can be busy and complicated, which is why we offer
-          a fully insured variety of services to make things easier on you and your furry
+          a variety of services to make things easier on you and your furry
           family. From boarding, with plenty of love and attention, to fun hikes,
           we pride ourselves on our professional yet friendly approach. We do
           everything necessary to ensure your pets are safe, secure, and happy.
