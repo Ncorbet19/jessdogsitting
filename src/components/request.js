@@ -35,7 +35,7 @@ function RequestForm() {
       const startDate = new Date(start);
       const endDate = new Date(end);
       const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-      const total = nights * parseInt(numPets) * 40;
+      const total = nights * parseInt(numPets) * 45;
       setPrice(total);
     } else {
       setPrice(0);

@@ -118,7 +118,7 @@ function App() {
         {/* Price on the left */}
         <div className="price-info">
           <h1>
-            $40/night <br /> per dog
+            $45/night <br /> per dog
           </h1>
         </div>
 
